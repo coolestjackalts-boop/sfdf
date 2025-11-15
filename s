@@ -2355,7 +2355,7 @@ features.AutoSealMatatabi = function()
             if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
                 local targetPos = matatabiHRP.Position
                 
-                -- Teleport to Matatabi's position with Y = 147
+                -- Teleport to Matatabi's position with Y = -147
                 plr.Character.HumanoidRootPart.CFrame = CFrame.new(targetPos.X, -147, targetPos.Z)
                 
                 -- Start the Binding Seal skill at the player's position
