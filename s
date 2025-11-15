@@ -44,7 +44,7 @@ game.Players.LocalPlayer.OnTeleport:Connect(function(state)
         repeat task.wait() until game:IsLoaded()
         if getgenv().Executed then return end
         getgenv().Executed = true
-        loadstring(game:HttpGet("https://pastebin.com/raw/7Jue2q0Y"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/coolestjackalts-boop/sfdf/refs/heads/main/s"))()
     ]])
 end)
 
