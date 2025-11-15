@@ -7102,18 +7102,6 @@ MainTab:CreateSection("Movement")
 -----------------------
 
 MainTab:CreateToggle({
-    Name = "Auto Seal Matatabi",
-    CurrentValue = false,
-    Flag = "AutoSealMatabiToggle", 
-    Callback = function(Value)
-        autosealingmatatabi = Value
-        spawn(function()
-            features.AutoSealMatatabi()
-        end)
-    end,
-})
-
-MainTab:CreateToggle({
     Name = "Search for Object/NPC",
     CurrentValue = false,
     Flag = "Search for NPC/Object", 
@@ -7923,6 +7911,22 @@ FarmsTab:CreateToggle({
 })
 
 ]]--
+
+--------------------------------
+FarmsTab:CreateSection("Jinchuriki")
+--------------------------------
+
+FarmsTab:CreateToggle({
+    Name = "Auto Seal Matatabi",
+    CurrentValue = false,
+    Flag = "AutoSealMatabiToggle", 
+    Callback = function(Value)
+        autosealingmatatabi = Value
+        spawn(function()
+            features.AutoSealMatatabi()
+        end)
+    end,
+})
 
 --------------------------------
 FarmsTab:CreateSection("Activations")
