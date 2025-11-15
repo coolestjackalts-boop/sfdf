@@ -2356,10 +2356,10 @@ features.AutoSealMatatabi = function()
                 local targetPos = matatabiHRP.Position
                 
                 -- Teleport to Matatabi's position with Y = 147
-                plr.Character.HumanoidRootPart.CFrame = CFrame.new(targetPos.X, 147, targetPos.Z)
+                plr.Character.HumanoidRootPart.CFrame = CFrame.new(targetPos.X, -147, targetPos.Z)
                 
                 -- Start the Binding Seal skill at the player's position
-                local skillPos = Vector3.new(targetPos.X, 147, targetPos.Z)
+                local skillPos = Vector3.new(targetPos.X, -147, targetPos.Z)
                 RS.Events.DataEvent:FireServer("startSkill", "Binding Seal", skillPos, true)
                 
                 -- Spam ReleaseSkill
