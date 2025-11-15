@@ -2326,6 +2326,49 @@ features.FarmPlayer = function()
     end
 end
 
+features.AutoSealMatatabi = function()
+    if not autosealingmatatabi then return end
+    
+    local RunService = game:GetService("RunService")
+    local RS = game:GetService("ReplicatedStorage")
+    
+    local sealConnection
+    sealConnection = RunService.Heartbeat:Connect(function()
+        if not autosealingmatatabi then
+            if sealConnection then
+                sealConnection:Disconnect()
+            end
+            return
+        end
+        
+        -- Find Matatabi in workspace
+        local matatabi = workspace:FindFirstChild("Matatabi")
+        if not matatabi then return end
+        
+        local matatabiHumanoid = matatabi:FindFirstChild("Humanoid")
+        local matatabiHRP = matatabi:FindFirstChild("HumanoidRootPart")
+        
+        if not (matatabiHumanoid and matatabiHRP) then return end
+        
+        -- Check if health is 1 or less
+        if matatabiHumanoid.Health <= 1 then
+            if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
+                local targetPos = matatabiHRP.Position
+                
+                -- Teleport to Matatabi's position with Y = 147
+                plr.Character.HumanoidRootPart.CFrame = CFrame.new(targetPos.X, 147, targetPos.Z)
+                
+                -- Start the Binding Seal skill at the player's position
+                local skillPos = Vector3.new(targetPos.X, 147, targetPos.Z)
+                RS.Events.DataEvent:FireServer("startSkill", "Binding Seal", skillPos, true)
+                
+                -- Spam ReleaseSkill
+                RS.Events.DataEvent:FireServer("ReleaseSkill")
+            end
+        end
+    end)
+end
+
 features.StealthMode = function()
 
     local function takemeasurement(reason)
@@ -7057,6 +7100,18 @@ local Settings = Window:CreateTab("","cog")
 -----------------------
 MainTab:CreateSection("Movement")
 -----------------------
+
+MainTab:CreateToggle({
+    Name = "Auto Seal Matatabi",
+    CurrentValue = false,
+    Flag = "AutoSealMatabiToggle", 
+    Callback = function(Value)
+        autosealingmatatabi = Value
+        spawn(function()
+            features.AutoSealMatatabi()
+        end)
+    end,
+})
 
 MainTab:CreateToggle({
     Name = "Search for Object/NPC",
